@@ -224,15 +224,8 @@ step) → `verified`, and only then does the dir get its `> Archived` headers.
 ## Checking it
 
 ```bash
-node <this-skill>/scripts/check-spec.mjs docs/plans/2026-08-22-refund-locked-empty-state
+node <this-skill-dir>/scripts/check-spec.mjs docs/plans/2026-08-22-refund-locked-empty-state
 ```
-
-Run it before presenting any gate and again before execution. It recomputes the
-receipt hashes, cascades a void approval downstream, and reports criteria nothing
-implements, citations pointing at criteria that do not exist, tasks without a
-`Verify:`, `npm run` commands that are not real scripts, and a `Proven by:`
-naming a test that neither exists nor appears in any task's `Files:`. Those are
-the checks that quietly rot when done by hand.
 
 The `sha256` above is illustrative. Compute the real one with `shasum -a 256`, or
 the validator will correctly call the receipt void.

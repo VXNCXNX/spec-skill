@@ -14,16 +14,24 @@ What counts as dangerous, how you deploy, and which reviewers fire live in
 
 Drop this directory in one of:
 
-| Agent        | Path                    |
-| ------------ | ----------------------- |
-| Claude Code  | `.claude/skills/spec/`  |
-| Cursor       | `.agents/skills/spec/`  |
-| Cursor (alt) | `.cursor/skills/spec/`  |
+| Agent         | Path                   |
+| ------------- | ---------------------- |
+| Claude Code   | `.claude/skills/spec/` |
+| Codex, Cursor | `.agents/skills/spec/` |
+| Cursor (alt)  | `.cursor/skills/spec/` |
 
-Keep the folder name `spec`. The frontmatter `name: spec` has to match.
+Keep the folder name `spec`: the frontmatter `name: spec` has to match. One
+checkout can serve Claude Code and Codex at once with a symlink from
+`.agents/skills/spec` to `.claude/skills/spec`.
 
-Then add a short overlay to `AGENTS.md` so the agent knows *your* risk
-surfaces. Without one it will still run, but tier-3 will be a guess:
+The skill runs only when you ask for it, and two flags keep it that way:
+`disable-model-invocation: true` in `SKILL.md` for Claude Code,
+`policy.allow_implicit_invocation: false` in `agents/openai.yaml` for Codex.
+Both stay set. Without them an ordinary "fix this" becomes three stopped turns
+because a diff touched four files.
+
+Then add a short overlay to `AGENTS.md` (or a file it names) so the agent knows
+*your* risk surfaces. Without one it still runs, but tier 3 is a guess:
 
 ```markdown
 ### Specs under `docs/plans/`
@@ -69,6 +77,17 @@ It checks, because by-hand versions of these rot into a claim:
 - criteria nothing implements, and citations pointing at criteria that do not exist
 - a `Verify:` line per task, and that `npm run X` names a real script
 - every `SHALL CONTINUE TO` names a test that exists or that some task creates
+
+## Built at Preuve
+
+This skill runs every gated change at [preuve.ai](https://preuve.ai), a
+startup viability analyzer: a founder submits an idea, Preuve scans it against
+live sources and returns a report with a verdict.
+
+The same analysis is one tool call away inside your agent through the
+[Preuve MCP server](https://preuve.ai/mcp). Add `https://mcp.preuve.ai/mcp` in
+claude.ai, Claude Code, Cursor or Codex, sign in with OAuth, and ask it to
+check an idea before you build it.
 
 ## Origin
 
