@@ -159,23 +159,23 @@ so a half-deployed state degrades to today's behaviour rather than a blank panel
 - [ ] 1.1 Add `lockReason: 'refunded'` at the refund gate in `access.ts`, and
       assert the plan-only path is unchanged.
   - Files: `src/api/access.ts`
-  - Verify: `npm test` covers the two new cases plus the byte-identical
+  - Verify: `npm run test` covers the two new cases plus the byte-identical
     plan-only payload
   - _Requirements: 1.1, 1.2_
 - [ ] 1.2 Assert the field is absent, not null, when no refund applies.
   - Files: `src/api/__tests__/access.test.ts`
-  - Verify: `npm test`
+  - Verify: `npm run test`
   - _Requirements: 1.3_
 - [ ] 2. Client
 - [ ] 2.1 Branch the locked panel on `lockReason` and drop the checkout control
       in the refunded case.
   - Files: `src/components/LockedPanel.tsx`
-  - Verify: `npm test` renders the locked route without a checkout button present
+  - Verify: `npm run test` renders the locked route without a checkout button present
   - _Requirements: 2.1_
 - [ ] 3. Co-artifacts
 - [ ] 3.1 Document the field and the gate order it depends on.
   - Files: `docs/access-gates.md`
-  - Verify: `npm test`
+  - Verify: `npm run test`
   - _Requirements: enabler_
 ```
 

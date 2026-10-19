@@ -3,7 +3,7 @@
 # invokes the skill implicitly on any "fix this", which the skill forbids.
 interface:
   display_name: 'Spec-driven change'
-  short_description: 'Gated requirements/design/tasks spec under docs/plans/ with approval receipts'
+  short_description: 'Gated requirements/design/tasks spec with approval receipts'
   default_prompt: 'Use $spec to turn this into a gated spec under docs/plans/.'
 
 policy:
