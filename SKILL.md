@@ -5,6 +5,9 @@ description: >-
   approval receipts and a decision ledger a fresh session can resume from.
   Invoke with /spec (Claude Code) or $spec (Codex).
 disable-model-invocation: true
+metadata:
+  openclaw:
+    homepage: https://preuve.ai
 ---
 
 # Spec-driven change
@@ -222,9 +225,9 @@ Unattended: stop and report after 10 consecutive tasks without a human look;
 stop on the first failing verification rather than stacking work behind a red
 check; leave tool approvals with the user.
 
-Hard stops always: never push without confirmation, never mutate production
-data or secrets, never restart a shared local service the user owns. The
-overlay may add more.
+Hard stops always: never mutate production data or secrets, never restart a
+shared local service the user owns, plus whatever the overlay adds. Pushing
+follows the overlay's rule; with no overlay, confirm before each push.
 
 ## Closing: "shipped" is four states
 
@@ -242,10 +245,10 @@ Record `closure` and skip nothing:
 spec that looks finished over a system that never changed. When the deploy is
 the user's to run, stop at `merged` and say so.
 
-At closure: report the co-artifact sweep unprompted, run the specialist reviews
-the overlay names for the surfaces you touched, and write the decisions with
-their reasoning to the project's durable memory when it has one, retiring any
-fact a new decision supersedes.
+At closure: report the co-artifact sweep unprompted, follow the overlay's
+specialist-review policy for the surfaces you touched, and write the decisions
+with their reasoning to the project's durable memory when it has one, retiring
+any fact a new decision supersedes.
 
 ## Lifecycle: a shipped spec is an archive, not a contract
 

@@ -15,8 +15,9 @@
 //     and that cascade is easy to forget by hand.
 //   - requirement coverage both ways: criteria nothing implements, and citations
 //     pointing at criteria that do not exist (usually a renumber).
-//   - a Verify: line per task, and that an `npm run X` names a real script.
-//     Invented commands are the most common way a task fakes verification.
+//   - a Verify: line per task, and that an `npm run X` (or bare `npm test`)
+//     names a real script. Invented commands are the most common way a task
+//     fakes verification.
 //   - every `SHALL CONTINUE TO` assertion names a test that exists or that some
 //     task creates. An unbacked assertion is a wish, and these sit on money and
 //     access-control paths.
@@ -186,7 +187,9 @@ if (taskText) {
     if (isParent) continue;
     if (!/\bVerify:/.test(block)) noVerify.push(label);
     if (!reqM) noVerify.push(`${label} (no _Requirements:_ either)`);
-    for (const m of block.matchAll(/npm run ([a-z0-9:_-]+)/gi)) badScript.push([label, m[1]]);
+    // `npm test` is `npm run test`, so it gets the same existence check.
+    for (const m of block.matchAll(/npm (?:run ([a-z0-9:_-]+)|(test)(?![a-z0-9:_-]))/gi))
+      badScript.push([label, m[1] ?? m[2]]);
   }
 }
 

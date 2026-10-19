@@ -6,9 +6,9 @@ A spec skill for coding agents. Requirements, design, tasks. Risk-tiered
 approval gates, a decision ledger that survives compaction, and a validator
 that treats "the hashes still match" as a check, not a claim.
 
-Copy the folder into a repo and invoke `/spec`. The method is project-agnostic.
-What counts as dangerous, how you deploy, and which reviewers fire live in
-*your* `AGENTS.md`, not here.
+Copy the folder into a repo and invoke `/spec` (Claude Code) or `$spec` (Codex).
+The method is project-agnostic. What counts as dangerous, how you deploy, and
+which reviewers fire live in *your* `AGENTS.md`, not here.
 
 ## Install
 
