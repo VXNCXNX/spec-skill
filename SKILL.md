@@ -5,6 +5,9 @@ description: >-
   approval receipts and a decision ledger a fresh session can resume from.
   Invoke with /spec (Claude Code) or $spec (Codex).
 disable-model-invocation: true
+metadata:
+  openclaw:
+    homepage: https://preuve.ai
 ---
 
 # Spec-driven change
